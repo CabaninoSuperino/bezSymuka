@@ -1,21 +1,23 @@
-from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render
-from .models import Question
+from .models import Author
+from .models import Book
 
 def index(request):
-    latest_question_list = Question.objects.order_by("-pub_date")[:5]
-    context = {"latest_question_list": latest_question_list}
-    return render(request, "polls/index.html", context)
-
-def detail(request, question_id):
-    question = get_object_or_404(Question, pk=question_id)
-    return render(request, "polls/detail.html", {"question": question})
+    authors = Author.objects.all()
+    return render(request, 'polls/index.html', {'author_list': authors})
 
 
-def results(request, question_id):
-    response = "You're looking at the results of question %s."
-    return HttpResponse(response % question_id)
+def author_detail(request, pk):
+    author = get_object_or_404(Author, pk=pk)
+    return render(request, 'polls/author_detail.html', {'author': author})
 
 
-def vote(request, question_id):
-    return HttpResponse("You're voting on question %s." % question_id)
+def book_detail(request, book_id):
+    book = get_object_or_404(Book, pk=book_id)
+    return render(request, "polls/book_detail.html", {"book": book})
+
+
+
+def book_price(request, book_id):
+    book = get_object_or_404(Book, pk=book_id)
+    return render(request, 'polls/book_price.html', {'book': book})

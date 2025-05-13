@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ book.book_name }}</title>
+</head>
+<body>
+    <h1>{{ book.book_name }}</h1>
+    <p><strong>Автор:</strong> {{ book.author.name }}</p>
+    <p><strong>Жанр:</strong> {{ book.genre }}</p>
+    <p><strong>Цена:</strong> {{ book.price }} руб.</p>
+    <p><strong>Описание:</strong> {{ book.description }}</p>
+    <a href="{% url 'polls:author_detail' book.author.pk %}">← Назад к автору</a>
+</body>
+</html>

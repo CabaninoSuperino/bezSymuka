@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Книги автора</title>
+</head>
+<body>
+    <h1>Книги автора: {{ author.name }}</h1>
+    <ul>
+        {% for book in author.books.all %}
+            <li>
+                <a href="{% url 'polls:book_detail' book.id %}">{{ book.book_name }}</a>
+                - {{ book.price }} руб.
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
